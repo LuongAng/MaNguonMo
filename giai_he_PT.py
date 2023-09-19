@@ -12,4 +12,4 @@ X = np.dot(A1,B)
 print('Nghiem cua he:',X)
 print('lam thu')
 print('aaaaaaaaaaaaaaaaaaaaaaaa')
-      
+print('anh luong dep trai')    
