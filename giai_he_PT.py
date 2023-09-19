@@ -4,22 +4,31 @@
 import numpy as np
 n=int(input("Nhập hệ phương trình:"))
 A=np.zeros((n,n),dtype=int)
-B=np.zeros((n,1),dtype=int)
-for i in range(1,n):
-  for j in range(1,n):
-    a=int(input(f"A[{i}][{j}])="))
+B=np.zeros((n,n),dtype=int)
+C=np.zeros((n,n+1),dtype=int)
+for i in range(0,n):
+  for j in range(0,n):
+    a=int(input(f"A[{i+1}][{j+1}])="))
     a=A[i][j]
-
-for i in range(1,n):
-  for j in range(1,n):
-    b=int(input(f"B[{i}][{j}])="))
+for i in range(0,n):
+  for j in range(0,1):
+    b=int(input(f"B[{i+1}][{j+1}])="))
     b=B[i][j]
-A1  = np.linalg.inv(A) # tạo ma trận nghich đảo
-print(A)
-print(B)
-print(A1)
-X = np.dot(A1,B)
-print('Nghiem cua he:',X)
-print('lam thu')
-print('aaaaaaaaaaaaaaaaaaaaaaaa')
-print('anh luong dep trai')    
+for i in range(0,n):
+  for j in range(0,n):
+    C[i][j]=A[i][j]
+for i in range(0,n):
+  for j in range(0,n):
+    C[i][j]=B[i][0]
+try:
+  A1= np.linalg.inv(A) # tạo ma trận nghich đảo
+  X = np.dot(A1,B)
+  print("Hệ phương trình có nghiệm duy nhất:",X)
+except:
+  rankA=(np.linalg.matrix_rank(A))
+  rankC=(np.linalg.matrix_rank(C))
+  #rankA1=(np.linalg.matrix_rank(1))
+  if(rankA<rankC):
+    print("Hệ phương trình vô nghiệm")
+  elif (rankA==rankC)and(rankA<n)and(rankC<n):
+    print("PHuong trinh vo so nghiem")
