@@ -4,7 +4,7 @@
 import numpy as np
 n = int(input("Nhập số ẩn: "))
 m=n
-
+# m là số hệ phương trình
 # Khởi tạo ma trận hệ số A và vector vế phải b
 A = np.zeros((m, n))
 B = np.zeros(n)
