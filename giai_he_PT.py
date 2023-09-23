@@ -1,14 +1,10 @@
-#bài này giải hệ phương trình x+2y=5 và 3x+4y =6
-# Yêu cầu hoàn chỉnh lại đoạn code
-#để có 1 app giải hệ phương trình có n phương trình n ẩn
 import numpy as np
 n = int(input("Nhập số ẩn: "))
 m=n
-# m là số hệ phương trình
+
 # Khởi tạo ma trận hệ số A và vector vế phải b
 A = np.zeros((m, n))
 B = np.zeros(n)
-C = np.column_stack((A, B))
 # Nhập ma trận hệ số A từ người dùng
 print("Nhập ma trận hệ số A:")
 for i in range(m):
@@ -19,16 +15,22 @@ for i in range(m):
 print("Nhập vector vế phải b:")
 for i in range(m):
     B[i] = float(input(f"b[{i + 1}]: "))
-rankA=(np.linalg.matrix_rank(A))
-rankC=(np.linalg.matrix_rank(C))    
-try:
-  A1= np.linalg.inv(A) # tạo ma trận nghich đảo
-  X = np.dot(A1,B)
-  print("Hệ phương trình có nghiệm duy nhất:",X)
-except np.linalg.LinAlgError as e:
-    if "Singular matrix" in str(e):
-        print("Hệ phương trình có vô số nghiệm hoặc không có nghiệm.")
-    else:
-        print(f"Lỗi: {str(e)}")
-except Exception as e:
-    print(f"Lỗi: {str(e)}")
+
+# Tính rank của ma trận hệ số A và ma trận mở rộng [A | B]
+rank_A = np.linalg.matrix_rank(A)
+rank_AB = np.linalg.matrix_rank(np.column_stack((A, B)))
+
+# Số biến trong hệ phương trình
+num_variables = A.shape[1]
+
+if rank_A < rank_AB:
+    print("Hệ phương trình không có nghiệm.")
+elif rank_A == rank_AB < num_variables:
+    print("Hệ phương trình có vô số nghiệm.")
+elif rank_A == rank_AB == num_variables:
+    try:
+        X = np.linalg.solve(A, B)
+        print("Hệ phương trình có một nghiệm duy nhất:")
+        print(X)
+    except np.linalg.LinAlgError as e:
+        print("Hệ phương trình không có nghiệm.")
