@@ -30,9 +30,12 @@ def tinhtoan():
     s = []
     cv = []
     for i in range(0,len(ds)):
-        stam =  'chu vi hinh ' +str(i) + ':' + str(ds[i].chuvi()) + 'do dai canh lon = ' + str(ds[i].canhlon())
-        s.append(stam)
-        cv.append(ds[i].chuvi())
+        try:
+            stam =  'chu vi hinh ' +str(i) + ':' + str(ds[i].chuvi()) + 'do dai canh lon = ' + str(ds[i].canhlon())
+            s.append(stam)
+            cv.append(ds[i].chuvi())
+        except AttributeError as e: //code sẽ vẫn xử lý nếu như có các kq nằm ngoài obj
+            s.append(f'lỗi: {str*(e)})
     label2.config(text = s[0])
     label2.pack()
     label3.config(text = s[1])
@@ -58,6 +61,7 @@ E3 = Entry(w,textvariable = canh3).pack()
 E4 = Entry(w,textvariable = canh4).pack()
 b1 = Button(w,text = 'Them du lieu',command = nhapdulieu).pack()
 b2 = Button(w,text = 'Tinh toan', command = tinhtoan).pack()
+#hien thi ket qua cua lable
 label2  = Label(w)
 label3 = Label(w)
 label4 = Label(w)
