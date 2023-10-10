@@ -31,4 +31,6 @@ hamNhap(n, list)
 print("the number of the even number is: ", timChan(listChan,list))
 print("the number of the odd number is: ", timLe(listLe,list))
 
-
+print ("anh vua tesst")
+print("gio anh commit")
+print("oke")
