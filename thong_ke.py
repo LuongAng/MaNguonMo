@@ -76,6 +76,7 @@ button = tk.Button(window, text="biểu đồ", command=button_click)
 button.pack()
 button2 = tk.Button(window, text="thống kê", command=button_click2)
 button2.pack()
+print("sdfghjmk")
 
 window.mainloop()
 
