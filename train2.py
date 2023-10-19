@@ -32,5 +32,12 @@ def train():
     loss = model.evaluate(X_test, y_test)
     print("Mất mát trên tập kiểm tra:", loss)
 
+# Dự đoán kết quả
+def dudoan(newdata):
+    predictions = model.predict(newdata)
+    print(predictions)
+
+# ***HƯỚNG DẪN SỬ DỤNG***
+dudoan([[7,99,1,9,1]])
 
 
