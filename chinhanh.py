@@ -30,3 +30,27 @@ def Haft():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
+size_x = tk.StringVar()
+size_y = tk.StringVar()
+angle = tk.StringVar()
+#chỉnh cỡ ảnh
+def resize():
+    imgresize = cv2.imread(file_path)
+    X = int(size_x.get())
+    Y = int(size_y.get())
+    imgre = cv2.resize(imgresize, (X, Y))
+    cv2.imshow('Resize_image', imgre)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+#xoay
+def rotation():
+    rtt_img = cv2.imread(file_path)
+    A = int(angle.get())
+    height, width = rtt_img.shape[:2]
+    rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), A, 1)
+    rotated_image = cv2.warpAffine(rtt_img, rotation_matrix, (width, height))
+    cv2.imshow("Rotation image", rotated_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
