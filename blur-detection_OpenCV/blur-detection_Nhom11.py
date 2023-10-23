@@ -19,6 +19,7 @@ def show_image(file_path):
         image_label.config(image=photo)
         image_label.image = photo
 
+
 def variance_of_laplacian(image):
     return cv2.Laplacian(image, cv2.CV_64F).var()
 
