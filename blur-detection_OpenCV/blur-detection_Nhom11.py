@@ -10,6 +10,14 @@ def is_valid_image(file_path):
         return image.format in ['JPEG', 'PNG']  # Kiểm tra định dạng ảnh
     except:
         return False
+def show_image(file_path):
+    if file_path:
+        image = Image.open(file_path)
+        image.thumbnail((400, 400))
+        photo = ImageTk.PhotoImage(image)
+
+        image_label.config(image=photo)
+        image_label.image = photo
 
 def check_blurriness():
     file_path = entry_path.get()
