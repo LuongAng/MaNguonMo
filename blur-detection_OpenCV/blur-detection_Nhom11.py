@@ -44,4 +44,27 @@ def check_blurriness():
                 result_label.config(text="Image is Not Blurry (Variance: {:.2f})".format(fm))
             else:
                 result_label.config(text="Image is Blurry (Variance: {:.2f})".format(fm))
+root = tk.Tk()
+root.title("Image Blurriness Checker")
 
+label1 = tk.Label(root, text="Select an image:")
+label1.pack()
+
+entry_path = tk.Entry(root)
+entry_path.pack()
+
+browse_button = tk.Button(root, text="Browse", command=browse_image)
+browse_button.pack()
+
+check_button = tk.Button(root, text="Check Blurriness", command=check_blurriness, state=tk.DISABLED)
+check_button.pack()
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+image_label = tk.Label(root)
+image_label.pack()
+
+threshold = 500.0
+
+root.mainloop()
