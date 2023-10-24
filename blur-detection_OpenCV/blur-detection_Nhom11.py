@@ -30,6 +30,11 @@ def browse_image():
     show_image(file_path)
     check_button.config(state=tk.NORMAL)  # Khi đã chọn ảnh, bật nút kiểm tra
 
+def adjust_brightness_contrast(image_path, alpha, beta):
+    image = cv2.imread(image_path)
+    adjusted = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
+    return adjusted
+
 def check_blurriness():
     file_path = entry_path.get()
     if file_path:
@@ -55,6 +60,14 @@ entry_path.pack()
 
 browse_button = tk.Button(root, text="Browse", command=browse_image)
 browse_button.pack()
+
+brightness_scale = tk.Scale(root, from_=0, to=100, orient="horizontal", label="Brightness")
+brightness_scale.set(50)  # Giá trị mặc định
+brightness_scale.pack()
+
+contrast_scale = tk.Scale(root, from_=-100, to=100, orient="horizontal", label="Contrast")
+contrast_scale.set(0)  # Giá trị mặc định
+contrast_scale.pack()
 
 check_button = tk.Button(root, text="Check Blurriness", command=check_blurriness, state=tk.DISABLED)
 check_button.pack()
