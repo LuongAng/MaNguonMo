@@ -79,7 +79,7 @@ contrast_scale = tk.Scale(root, from_=-100, to=100, orient="horizontal", label="
 contrast_scale.set(0)  # Giá trị mặc định
 contrast_scale.pack()
 
-apply_button = tk.Button(root, text="Chọn để điều chỉnh", command=Button_Dieuchinh())
+apply_button = tk.Button(root, text="Chọn để điều chỉnh", command=Button_Dieuchinh)
 apply_button.pack()
 
 check_button = tk.Button(root, text="Check Blurriness", command=check_blurriness, state=tk.DISABLED)
