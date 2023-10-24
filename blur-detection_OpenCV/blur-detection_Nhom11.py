@@ -30,11 +30,21 @@ def browse_image():
     show_image(file_path)
     check_button.config(state=tk.NORMAL)  # Khi đã chọn ảnh, bật nút kiểm tra
 
-def adjust_brightness_contrast(image_path, alpha, beta):
+def Dieuchinh(image_path, alpha, beta):
     image = cv2.imread(image_path)
     adjusted = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
     return adjusted
 
+def Button_Dieuchinh():
+    file_path = entry_path.get()
+    if file_path:
+        alpha = brightness_scale.get() / 100.0  # Chuyển đổi giá trị từ thanh trượt (0-100) thành alpha (0.0-1.0)
+        beta = contrast_scale.get()
+
+        adjusted_image = Dieuchinh(file_path, alpha, beta)
+        result_path = "adjusted_image.jpg"
+        cv2.imwrite(result_path, adjusted_image)
+        show_image(result_path)
 def check_blurriness():
     file_path = entry_path.get()
     if file_path:
@@ -61,13 +71,16 @@ entry_path.pack()
 browse_button = tk.Button(root, text="Browse", command=browse_image)
 browse_button.pack()
 
-brightness_scale = tk.Scale(root, from_=0, to=100, orient="horizontal", label="Brightness")
+brightness_scale = tk.Scale(root, from_=0, to=100, orient="horizontal", label="Độ sáng tối")
 brightness_scale.set(50)  # Giá trị mặc định
 brightness_scale.pack()
 
-contrast_scale = tk.Scale(root, from_=-100, to=100, orient="horizontal", label="Contrast")
+contrast_scale = tk.Scale(root, from_=-100, to=100, orient="horizontal", label="Độ tương phản")
 contrast_scale.set(0)  # Giá trị mặc định
 contrast_scale.pack()
+
+apply_button = tk.Button(root, text="Chọn để điều chỉnh", command=Button_Dieuchinh())
+apply_button.pack()
 
 check_button = tk.Button(root, text="Check Blurriness", command=check_blurriness, state=tk.DISABLED)
 check_button.pack()
