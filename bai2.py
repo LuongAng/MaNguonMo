@@ -42,6 +42,7 @@ def select_region(event, x, y, flags, param):
             selected_region = img[start_y:end_y, start_x:end_x]
 
 
+
 #Ham lam mo anh
 def on_ok_button_click():
     global img, selected_region, editing_completed
@@ -56,3 +57,12 @@ def on_ok_button_click():
 
         # Cập nhật hiển thị
         cv2.imshow('Portrait', img)
+
+def on_confirm_button_click():
+    global img, editing_completed
+    if editing_completed:
+        # Ẩn viền xanh bằng cách vẽ lại hình chữ nhật màu nền (đặt độ dày thành -1)
+        cv2.rectangle(img, (start_x, start_y), (end_x, end_y), (0, 0, 0), -1)
+        editing_completed = False
+        
+
