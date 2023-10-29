@@ -41,7 +41,17 @@ def select_region(event, x, y, flags, param):
             # Lưu vùng đã chọn
             selected_region = img[start_y:end_y, start_x:end_x]
 
-
+def open_image():
+    global img, selected_region, editing_completed
+    file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.jpeg *.png *.bmp *.gif *.tif")])
+    if file_path:
+        img = cv2.imread(file_path)
+        if img is not None:
+            cv2.namedWindow('Portrait')
+            cv2.setMouseCallback('Portrait', select_region)
+            selected_region = None
+            editing_completed = False
+            cv2.imshow('Portrait', img)
 
 #Ham lam mo anh
 def on_ok_button_click():
