@@ -16,3 +16,8 @@ from tkinter import filedialog
 #cv2.imshow('5x5 filter', output)
 #cv2.waitKey(0)
 
+# Khởi tạo biến toàn cục để lưu trữ tọa độ của vùng chọn
+start_x, start_y, end_x, end_y = -1, -1, -1, -1
+is_drawing = False
+selected_region = None
+editing_completed = False
