@@ -40,3 +40,19 @@ def select_region(event, x, y, flags, param):
 
             # Lưu vùng đã chọn
             selected_region = img[start_y:end_y, start_x:end_x]
+
+
+#Ham lam mo anh
+def on_ok_button_click():
+    global img, selected_region, editing_completed
+    if selected_region is not None:
+        # Áp dụng bộ lọc trung bình để làm mịn vùng đã chọn
+        kernel = np.ones((5, 5), np.float32) / 25.0
+        smoothed_region = cv2.filter2D(selected_region, -1, kernel)
+        img[start_y:end_y, start_x:end_x] = smoothed_region
+
+        # Gán vùng đã làm mịn trở lại vào ảnh gốc
+        editing_completed = True
+
+        # Cập nhật hiển thị
+        cv2.imshow('Portrait', img)
